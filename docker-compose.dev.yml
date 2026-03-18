@@ -1,0 +1,32 @@
+version: '3.9'
+
+# Только инфраструктура для локальной разработки
+# Сервисы запускаются отдельно через npm run dev
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: goida-postgres-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: goida
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: goida_vpn
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+  redis:
+    image: redis:7-alpine
+    container_name: goida-redis-dev
+    restart: unless-stopped
+    command: redis-server --requirepass redispass
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_dev_data:/data
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:

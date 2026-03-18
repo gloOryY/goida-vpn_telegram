@@ -1,0 +1,23 @@
+{
+  "name": "@goida-vpn/notification-service",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@goida-vpn/shared": "*",
+    "dotenv": "^17.3.1",
+    "fastify": "^4.28.1",
+    "ioredis": "^5.4.1",
+    "node-telegram-bot-api": "^0.64.0",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "ts-node-dev": "^2.0.0"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "goida-vpn",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,json,md}\"",
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --coverage --passWithNoTests",
+    "prepare": "husky install",
+    "build": "tsc --build",
+    "dev:gateway": "npm run dev --workspace=@goida-vpn/api-gateway",
+    "dev:auth": "npm run dev --workspace=@goida-vpn/auth-service",
+    "dev:vpn": "npm run dev --workspace=@goida-vpn/vpn-service",
+    "dev:payment": "npm run dev --workspace=@goida-vpn/payment-service",
+    "dev:notification": "npm run dev --workspace=@goida-vpn/notification-service",
+    "dev:bot": "npm run dev --workspace=@goida-vpn/telegram-bot"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "dotenv-cli": "^11.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "ts-jest": "^29.1.5",
+    "typescript": "^5.4.5"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.ts",
+      "**/*.spec.ts",
+      "**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "apps/*/src/**/*.ts",
+      "packages/*/src/**/*.ts",
+      "!**/*.d.ts",
+      "!**/index.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 70
+      }
+    }
+  }
+}

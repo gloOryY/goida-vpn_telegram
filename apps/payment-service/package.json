@@ -1,0 +1,21 @@
+{
+  "name": "@goida-vpn/payment-service",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@fastify/jwt": "^8.0.1",
+    "@goida-vpn/shared": "*",
+    "dotenv": "^17.3.1",
+    "fastify": "^4.28.1",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
+  }
+}
